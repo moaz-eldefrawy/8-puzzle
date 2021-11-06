@@ -2,20 +2,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class State implements Cloneable{
-    final static int puzzleSize = 3;
-    int[][] grid = new int[puzzleSize][puzzleSize];
+    static final int PUZZLE_SIZE = 3;
+    int[][] grid = new int[PUZZLE_SIZE][PUZZLE_SIZE];
 
     State(){
-        for(int i=0; i<puzzleSize*puzzleSize; i++){
+        for(int i=0; i<PUZZLE_SIZE*PUZZLE_SIZE; i++){
             grid[i/3][i%3] = i;
         }
     }
 
     State(int[][] grid){
-        for(int i=0; i<puzzleSize; i++){
-            for(int j=0; j<puzzleSize; j++){
-                this.grid[i][j] = grid[i][j];
-            }
+        for(int i=0; i<PUZZLE_SIZE; i++){
+            this.grid[i] = Arrays.copyOf(grid[i],3);
         }
     }
 
@@ -25,7 +23,7 @@ public class State implements Cloneable{
 
      */
 
-    public ArrayList<State> possibleNextStates() throws CloneNotSupportedException {
+    public ArrayList<State> possibleNextStates() {
         ArrayList<State> result = new ArrayList<>();
         ArrayList<Integer> zero = getZero();
         int x = zero.get(0);
@@ -47,14 +45,14 @@ public class State implements Cloneable{
         }
 
         // down
-        if(x<puzzleSize-1) {
+        if(x<PUZZLE_SIZE-1) {
             State newState = new State(grid);
             newState.swap(x,y,x+1,y);
             result.add(newState);
         }
 
         // right
-        if(y<puzzleSize-1) {
+        if(y<PUZZLE_SIZE-1) {
             State newState = new State(grid);
             newState.swap(x,y,x,y+1);
             result.add(newState);
@@ -96,8 +94,8 @@ public class State implements Cloneable{
      */
     public ArrayList<Integer> getZero(){
         ArrayList<Integer> arr = new ArrayList<>();
-        for(int i=0; i<puzzleSize; i++) {
-            for (int j = 0; j < puzzleSize; j++) {
+        for(int i=0; i<PUZZLE_SIZE; i++) {
+            for (int j = 0; j < PUZZLE_SIZE; j++) {
                 if (grid[i][j] == 0) {
                     arr.add(i);
                     arr.add(j);
@@ -105,7 +103,7 @@ public class State implements Cloneable{
                 }
             }
         }
-        // unreachble
+        // unreachable
         assert(false);
         return arr;
     }
@@ -127,19 +125,16 @@ public class State implements Cloneable{
     }
 
 
+    public boolean equals(State state) {
+        return this.equals(state.grid);
+    }
 
     public boolean equals(int[][] grid) {
-        for(int i=0; i<puzzleSize; i++) {
-            for(int j=0; j<puzzleSize; j++){
-                if(grid[i][j] != this.grid[i][j])
-                    return false;
-            }
-        }
-        return true;
+        return Arrays.deepEquals(this.grid,grid);
     }
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
+    protected Object clone()  {
         return new State(grid);
     }
 }

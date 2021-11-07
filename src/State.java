@@ -3,8 +3,10 @@ import java.util.Arrays;
 
 public class State implements Cloneable{
     static final int PUZZLE_SIZE = 3;
+    static final State GOAL_STATE = new State();
     int[][] grid = new int[PUZZLE_SIZE][PUZZLE_SIZE];
 
+    /** Creates a goal state */
     State(){
         for(int i=0; i<PUZZLE_SIZE*PUZZLE_SIZE; i++){
             grid[i/3][i%3] = i;
@@ -65,13 +67,15 @@ public class State implements Cloneable{
      * @return is the puzzle finished
      */
     boolean isWin() {
+        /* Commented out.. how does it work?
         for(int i=1; i<9; i++){
             int pre = i-1;
             if(grid[i/3][i%3] != grid[pre/3][pre%3])
                 return false;
         }
 
-        return true;
+        return true;*/
+        return this.equals(GOAL_STATE);
     }
 
     /**
@@ -125,8 +129,17 @@ public class State implements Cloneable{
     }
 
 
-    public boolean equals(State state) {
+    @Override
+    public boolean equals(Object other) {
+        if (other.getClass() != this.getClass())
+            return false;
+        State state = (State) other;
         return this.equals(state.grid);
+    }
+
+    @Override
+    public int hashCode(){
+        return java.util.Arrays.deepHashCode(grid);
     }
 
     public boolean equals(int[][] grid) {

@@ -16,13 +16,14 @@ class BFS {
         State current;
         while (!queue.isEmpty()){
             current = queue.remove();
-            if (current.isWin())
-                return true;
             for (State nextState : current.possibleNextStates()){
                 if (parentMap.containsKey(nextState))
                     continue;
                 queue.add(nextState);
                 parentMap.put(nextState, current);
+                /* Early goal test, the TA doesn't mind*/
+                if (nextState.isWin())
+                    return true;
             }
         }
 

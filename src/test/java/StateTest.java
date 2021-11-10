@@ -14,29 +14,29 @@ class StateTest {
         ArrayList<State> states = s.possibleNextStates();
 
 
-        assertEquals(states.get(0).equals( new int[][] {
+        assertTrue(states.get(0).equals( new int[][] {
                 {1, 0, 2},
                 {3, 4, 5},
                 {6, 7, 8},
-        } ), true);
+        } ));
 
-        assertEquals(states.get(1).equals( new int[][] {
+        assertTrue(states.get(1).equals( new int[][] {
                 {1, 4, 2},
                 {0, 3, 5},
                 {6, 7, 8},
-        } ), true);
+        } ));
 
-        assertEquals(states.get(2).equals( new int[][] {
+        assertTrue(states.get(2).equals(new int[][]{
                 {1, 4, 2},
                 {3, 7, 5},
                 {6, 0, 8},
-        } ), true);
+        }));
 
-        assertEquals(states.get(3).equals( new int[][] {
+        assertTrue(states.get(3).equals(new int[][]{
                 {1, 4, 2},
                 {3, 5, 0},
                 {6, 7, 8},
-        } ), true);
+        }));
 
     }
 }

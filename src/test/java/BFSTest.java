@@ -1,3 +1,6 @@
+import algorithms.Main;
+import algorithms.State;
+import algorithms.BFS;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

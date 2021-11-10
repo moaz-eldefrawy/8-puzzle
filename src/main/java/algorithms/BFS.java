@@ -1,13 +1,17 @@
+package algorithms;
+
+import algorithms.State;
+
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 
-class BFS {
+public class BFS {
 
-    static Map<State, State> parentMap = null;
+    static public Map<State, State> parentMap = null;
 
-    static boolean solve(State initialState){
+    public static boolean solve(State initialState){
         Queue<State> queue = new LinkedList<>();
         queue.add(initialState);
         parentMap = new HashMap<>();

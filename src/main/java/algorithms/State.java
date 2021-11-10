@@ -1,19 +1,21 @@
+package algorithms;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class State implements Cloneable{
-    static final int PUZZLE_SIZE = 3;
-    static final State GOAL_STATE = new State();
+    public static final int PUZZLE_SIZE = 3;
+    public static final State GOAL_STATE = new State();
     int[][] grid = new int[PUZZLE_SIZE][PUZZLE_SIZE];
 
     /** Creates a goal state */
-    State(){
+    public State(){
         for(int i=0; i<PUZZLE_SIZE*PUZZLE_SIZE; i++){
             grid[i/3][i%3] = i;
         }
     }
 
-    State(int[][] grid){
+    public State(int[][] grid){
         for(int i=0; i<PUZZLE_SIZE; i++){
             this.grid[i] = Arrays.copyOf(grid[i],3);
         }

@@ -1,3 +1,5 @@
+package algorithms;
+
 import java.util.Map;
 import java.util.Stack;
 
@@ -6,7 +8,7 @@ public class Main {
         System.out.println("asd");
     }
 
-    static void displaySteps(Map<State, State> parentMap){
+    public static void displaySteps(Map<State, State> parentMap){
         State goal = State.GOAL_STATE;
         if (parentMap.containsKey(goal)){
             Stack<State> stack = new Stack<>();

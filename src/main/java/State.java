@@ -94,7 +94,7 @@ public class State implements Cloneable{
 
 
     /**
-        @returns i,j of zero
+        @return i,j of zero
      */
     public ArrayList<Integer> getZero(){
         ArrayList<Integer> arr = new ArrayList<>();

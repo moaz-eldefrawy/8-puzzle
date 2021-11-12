@@ -1,19 +1,19 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class State implements Cloneable{
+public class Puzzle implements Cloneable{
     static final int PUZZLE_SIZE = 3;
-    static final State GOAL_STATE = new State();
+    static final Puzzle GOAL_PUZZLE = new Puzzle();
     int[][] grid = new int[PUZZLE_SIZE][PUZZLE_SIZE];
 
     /** Creates a goal state */
-    State(){
+    Puzzle(){
         for(int i=0; i<PUZZLE_SIZE*PUZZLE_SIZE; i++){
             grid[i/3][i%3] = i;
         }
     }
 
-    State(int[][] grid){
+    Puzzle(int[][] grid){
         for(int i=0; i<PUZZLE_SIZE; i++){
             this.grid[i] = Arrays.copyOf(grid[i],3);
         }
@@ -25,8 +25,8 @@ public class State implements Cloneable{
 
      */
 
-    public ArrayList<State> possibleNextStates() {
-        ArrayList<State> result = new ArrayList<>();
+    public ArrayList<Puzzle> possibleNextStates() {
+        ArrayList<Puzzle> result = new ArrayList<>();
         ArrayList<Integer> zero = getZero();
         int x = zero.get(0);
         int y = zero.get(1);
@@ -34,30 +34,30 @@ public class State implements Cloneable{
 
         // up
         if(x>0) {
-            State newState = new State(grid);
-            newState.swap(x,y,x-1,y);
-            result.add(newState);
+            Puzzle newPuzzle = new Puzzle(grid);
+            newPuzzle.swap(x,y,x-1,y);
+            result.add(newPuzzle);
         }
 
         // left
         if(y>0) {
-            State newState = new State(grid);
-            newState.swap(x,y,x,y-1);
-            result.add(newState);
+            Puzzle newPuzzle = new Puzzle(grid);
+            newPuzzle.swap(x,y,x,y-1);
+            result.add(newPuzzle);
         }
 
         // down
         if(x<PUZZLE_SIZE-1) {
-            State newState = new State(grid);
-            newState.swap(x,y,x+1,y);
-            result.add(newState);
+            Puzzle newPuzzle = new Puzzle(grid);
+            newPuzzle.swap(x,y,x+1,y);
+            result.add(newPuzzle);
         }
 
         // right
         if(y<PUZZLE_SIZE-1) {
-            State newState = new State(grid);
-            newState.swap(x,y,x,y+1);
-            result.add(newState);
+            Puzzle newPuzzle = new Puzzle(grid);
+            newPuzzle.swap(x,y,x,y+1);
+            result.add(newPuzzle);
         }
 
         return result;
@@ -75,7 +75,7 @@ public class State implements Cloneable{
         }
 
         return true;*/
-        return this.equals(GOAL_STATE);
+        return this.equals(GOAL_PUZZLE);
     }
 
     /**
@@ -133,8 +133,8 @@ public class State implements Cloneable{
     public boolean equals(Object other) {
         if (other.getClass() != this.getClass())
             return false;
-        State state = (State) other;
-        return this.equals(state.grid);
+        Puzzle puzzle = (Puzzle) other;
+        return this.equals(puzzle.grid);
     }
 
     @Override
@@ -148,6 +148,6 @@ public class State implements Cloneable{
 
     @Override
     protected Object clone()  {
-        return new State(grid);
+        return new Puzzle(grid);
     }
 }

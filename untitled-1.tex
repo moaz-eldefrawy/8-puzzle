@@ -1,0 +1,177 @@
+\documentclass{article}
+\usepackage{tikz}
+
+\begin{document}
+   \begin{center}
+       \vspace*{1cm}
+
+	  \Huge
+       \textbf{8 Puzzle}
+
+	  \large
+       \vspace{0.5cm}
+        Assginment 1\\
+            	%\includegraphics{YOUR CAT GOES HERE}
+       \vspace{5cm}
+	   \LARGE
+	   \textbf{Moaz El-Defrawy  \hspace*{\fill} 18011823} \\
+       \textbf{Abdallah Youssef  \hspace*{\fill} 18015026} \\
+       \textbf{Ahmed Bahgat \hspace*{\fill} 18010078} \\
+       \textbf{Jehad Aly \hspace*{\fill} 18015027}
+       
+       
+            
+   \end{center}
+   
+\pagebreak
+
+\section{Data Structures}
+	\subsection{Breadth First Search}
+		\begin{itemize}
+			\item Queue
+			\item Map
+		\end{itemize}
+	\subsection{Depth First Search}
+		\begin{itemize}
+			\item Stack
+			\item Map
+		\end{itemize}
+	\subsection{A*Search}
+		\begin{itemize}
+			\item Priority Queue
+			\item Map
+		\end{itemize}
+	
+\section{Sample Runs}
+	\subsection{Run 1}
+	\begin{center}
+		\begin{tikzpicture}
+			\draw[step=1cm,color=gray] (0,0) grid (3,3);
+			\node at (+0.5,+2.5) {1};
+			\node at (+1.5,+2.5) {2};
+			\node at (+2.5,+2.5) {5};
+			\node at (+0.5,+1.5) {3};
+			\node at (+1.5,+1.5) {4};
+			\node at (+2.5,+1.5) {};
+			\node at (+0.5,+0.5) {6};
+			\node at (+1.5,+0.5) {7};
+			\node at (+2.5,+0.5) {8};
+		\end{tikzpicture}
+	\end{center}
+		\subsubsection{BFS}
+			\begin{itemize}
+				\item Path Cost: 3
+				\item Nodes Expanded: 5
+				\item Maximum Depth: 3
+				\item Running Time: 0 ms
+			\end{itemize}
+		\subsubsection{DFS}
+			\begin{itemize}
+				\item Path Cost: 1061
+				\item Nodes Expanded: 1069
+				\item Maximum Depth: 1062
+				\item Running Time: 10 ms
+			\end{itemize}
+		\subsubsection{A* Manhattan Heuristic}
+			\begin{itemize}
+				\item Path Cost: 3
+				\item Nodes Expanded: 4
+				\item Maximum Depth: 3
+				\item Running Time: 1 ms
+			\end{itemize}
+		\subsubsection{A* Euclidean Heuristic}
+			\begin{itemize}
+				\item Path Cost: 3
+				\item Nodes Expanded: 4
+				\item Maximum Depth: 3
+				\item Running Time: 0 ms
+			\end{itemize}
+
+	\subsection{Run 2}
+		\begin{center}
+		\begin{tikzpicture}
+			\draw[step=1cm,color=gray] (0,0) grid (3,3);
+			\node at (+0.5,+2.5) {1};
+			\node at (+1.5,+2.5) {2};
+			\node at (+2.5,+2.5) {3};
+			\node at (+0.5,+1.5) {4};
+			\node at (+1.5,+1.5) {5};
+			\node at (+2.5,+1.5) {6};
+			\node at (+0.5,+0.5) {8};
+			\node at (+1.5,+0.5) {7};
+			\node at (+2.5,+0.5) {};
+		\end{tikzpicture}
+		   \end{center}
+		\subsubsection{BFS}
+			\begin{itemize}
+				\item Path Cost: 2147483647
+				\item Nodes Expanded: 181441
+				\item Maximum Depth: 32
+				\item Running Time: 737 ms
+			\end{itemize}
+		\subsubsection{DFS}
+			\begin{itemize}
+				\item Path Cost: -1
+				\item Nodes Expanded: 255436
+				\item Maximum Depth: 102747
+				\item Running Time: 1008 ms
+			\end{itemize}	
+		\subsubsection{A* Manhattan Heuristic}
+			\begin{itemize}
+				\item Path Cost: -1
+				\item Nodes Expanded: 202070
+				\item Maximum Depth: 33
+				\item Running Time: 1136 ms
+			\end{itemize}
+		\subsubsection{A* Euclidean Heuristic}
+			\begin{itemize}
+				\item Path Cost: -1
+				\item Nodes Expanded: 187622
+				\item Maximum Depth: 32
+				\item Running Time: 1070 ms
+			\end{itemize}
+	\subsection{Run 3}
+		\begin{center}
+		\begin{tikzpicture}
+			\draw[step=1cm,color=gray] (0,0) grid (3,3);
+			\node at (+0.5,+2.5) {8};
+			\node at (+1.5,+2.5) {6};
+			\node at (+2.5,+2.5) {7};
+			\node at (+0.5,+1.5) {2};
+			\node at (+1.5,+1.5) {5};
+			\node at (+2.5,+1.5) {4};
+			\node at (+0.5,+0.5) {3};
+			\node at (+1.5,+0.5) {};
+			\node at (+2.5,+0.5) {1};
+		\end{tikzpicture}
+		   \end{center}
+		\subsubsection{BFS}
+			\begin{itemize}
+				\item Path Cost: 27
+				\item Nodes Expanded: 167762
+				\item Maximum Depth: 27
+				\item Running Time: 663 ms
+			\end{itemize}
+		\subsubsection{DFS}
+			\begin{itemize}
+				\item Path Cost: 68301
+				\item Nodes Expanded: 184016
+				\item Maximum Depth: 102714
+				\item Running Time: 892 ms
+			\end{itemize}
+		\subsubsection{A* Manhattan Heuristic}
+			\begin{itemize}
+				\item Path Cost: 27
+				\item Nodes Expanded: 6894
+				\item Maximum Depth: 27
+				\item Running Time: 38 ms
+			\end{itemize}
+		\subsubsection{A* Euclidean Heuristic}
+			\begin{itemize}
+				\item Path Cost: 27
+				\item Nodes Expanded: 17864
+				\item Maximum Depth: 27
+				\item Running Time: 92 ms
+			\end{itemize}
+
+\end{document}

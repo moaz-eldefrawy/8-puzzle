@@ -41,8 +41,8 @@ class BFS implements Traversal{
             }
         }
 
+        endTime = System.nanoTime();
         if (solved){
-            endTime = System.nanoTime();
             parentMap.remove(initialPuzzle); //to comply with the interface..
             return path = Helpers.getPathFromTraversalMap(parentMap, initialPuzzle, Puzzle.GOAL_PUZZLE);
         }

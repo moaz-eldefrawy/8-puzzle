@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class Puzzle implements Cloneable{
     public static final int PUZZLE_SIZE = 3;
     public static final Puzzle GOAL_PUZZLE = new Puzzle();
-    int[][] grid = new int[PUZZLE_SIZE][PUZZLE_SIZE];
+    public int[][] grid = new int[PUZZLE_SIZE][PUZZLE_SIZE];
 
     /** Creates a goal state */
     public Puzzle(){

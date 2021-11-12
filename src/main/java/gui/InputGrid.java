@@ -1,6 +1,7 @@
 package gui;
 
 import algorithms.Puzzle;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
@@ -13,20 +14,24 @@ public class InputGrid extends GridPane {
     public InputGrid () {
         super();
 
-        setPrefSize(300, 350);
+        setPrefSize(400, 350);
 
         GridPane.setConstraints(errorMsg, 0, 3,3,3);
         getChildren().add(errorMsg);
 
         for (int i = 0;i < 3;i++){
             for (int j = 0;j < 3;j++){
-                int v = i*3+j+1;
-                tfGrid[i][j] = new DigitTextField( v == 9 ? "" : Integer.toString(v));
+                int v = i*3+j;
+                tfGrid[i][j] = new DigitTextField( v == 0 ? "" : Integer.toString(v));
 
                 GridPane.setConstraints(tfGrid[i][j], j, i);
+                GridPane.setMargin(tfGrid[i][j], new Insets(5, 5, 5, 5));
                 getChildren().add(tfGrid[i][j]);
             }
         }
+
+
+
     }
 
 

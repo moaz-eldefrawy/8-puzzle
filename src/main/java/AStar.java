@@ -86,7 +86,9 @@ public class AStar implements Traversal{
         int sum = 0;
         for(int i=0; i<Puzzle.PUZZLE_SIZE; i++) {
             for(int j=0; j<Puzzle.PUZZLE_SIZE; j++) {
-                sum += Math.abs(puzzle.grid[i][j] - Puzzle.GOAL_PUZZLE.grid[i][j]);
+                int x = puzzle.grid[i][j]/3;
+                int y = puzzle.grid[i][j]%3;
+                sum += Math.abs(i - x) + Math.abs(j - y);
             }
         }
         return sum;
@@ -95,9 +97,11 @@ public class AStar implements Traversal{
         int sum = 0;
         for(int i=0; i<Puzzle.PUZZLE_SIZE; i++) {
             for(int j=0; j<Puzzle.PUZZLE_SIZE; j++) {
+                int x = puzzle.grid[i][j]/3;
+                int y = puzzle.grid[i][j]%3;
                 sum += Math.hypot(
-                        puzzle.grid[i][j] - Puzzle.GOAL_PUZZLE.grid[i][j],
-                        puzzle.grid[i][j] - Puzzle.GOAL_PUZZLE.grid[i][j]);
+                        i - x,
+                        j - y);
             }
         }
         return sum;

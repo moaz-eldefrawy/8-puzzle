@@ -15,7 +15,7 @@ public class DFS implements Traversal{
     List<Puzzle> path = new ArrayList<>();
     long startTime;
     long endTime;
-
+    int nodesExpanded = 0;
     DFS(){}
 
     public List<Puzzle> solve(Puzzle initialPuzzle){
@@ -28,6 +28,7 @@ public class DFS implements Traversal{
         stack.push(initialPuzzle);
 
         while(!stack.isEmpty()) {
+            nodesExpanded++;
             puzzle = stack.pop();
 
             if (puzzle.isWin()) {
@@ -54,7 +55,7 @@ public class DFS implements Traversal{
     }
 
     public Integer nodesExpanded(){
-        return path.size();
+        return nodesExpanded;
     }
 
     public Integer searchDepth(){

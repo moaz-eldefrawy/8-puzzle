@@ -1,19 +1,21 @@
+package algorithms;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Puzzle implements Cloneable{
-    static final int PUZZLE_SIZE = 3;
-    static final Puzzle GOAL_PUZZLE = new Puzzle();
+    public static final int PUZZLE_SIZE = 3;
+    public static final Puzzle GOAL_PUZZLE = new Puzzle();
     int[][] grid = new int[PUZZLE_SIZE][PUZZLE_SIZE];
 
     /** Creates a goal state */
-    Puzzle(){
+    public Puzzle(){
         for(int i=0; i<PUZZLE_SIZE*PUZZLE_SIZE; i++){
             grid[i/3][i%3] = i;
         }
     }
 
-    Puzzle(int[][] grid){
+    public Puzzle(int[][] grid){
         for(int i=0; i<PUZZLE_SIZE; i++){
             this.grid[i] = Arrays.copyOf(grid[i],3);
         }

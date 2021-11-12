@@ -1,3 +1,5 @@
+package algorithms;
+
 import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.List;
@@ -15,7 +17,7 @@ public class UI {
         System.out.println(k.contains(b));
     }
 
-    static void displaySteps(Map<Puzzle, Puzzle> parentMap){
+    public static void displaySteps(Map<Puzzle, Puzzle> parentMap){
         Puzzle goal = Puzzle.GOAL_PUZZLE;
         if (parentMap.containsKey(goal)){
             Stack<Puzzle> stack = new Stack<>();

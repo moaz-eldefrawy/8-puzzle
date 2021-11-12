@@ -58,7 +58,7 @@ class BFS implements Traversal{
 
     @Override
     public Integer searchDepth() {
-        return (solved? path.size() : Integer.MAX_VALUE);
+        return (solved? path.size() : Integer.MAX_VALUE /* TODO */);
     }
 
     @Override

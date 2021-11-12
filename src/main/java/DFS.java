@@ -24,7 +24,7 @@ public class DFS implements Traversal{
         startTime = System.nanoTime();
 
         Stack<Node> stack = new Stack<>();
-        Node curr = new Node(initialPuzzle,1);
+        Node curr = new Node(initialPuzzle, 1);
 
         stack.push(curr);
 
@@ -41,7 +41,7 @@ public class DFS implements Traversal{
 
             for (Puzzle nextPuzzle : curr.puzzle.possibleNextStates()) {
                 if(!visited.contains(nextPuzzle)) {
-                    stack.add(new Node(nextPuzzle,curr.depth+1));
+                    stack.add(new Node(nextPuzzle, curr.depth + 1));
                     visited.add(curr.puzzle);
                     parent.put(nextPuzzle,curr.puzzle);
                 }
@@ -53,7 +53,7 @@ public class DFS implements Traversal{
     }
 
     public Integer pathCost(){
-        return path.size();
+        return path.size() - 1;
     }
 
     public Integer nodesExpanded(){
@@ -61,7 +61,7 @@ public class DFS implements Traversal{
     }
 
     public Integer searchDepth(){
-        return path.size();
+        return maxDepth;
     }
 
     /**
@@ -71,7 +71,7 @@ public class DFS implements Traversal{
         return (endTime - startTime)/1000/1000;
     }
 
-    class Node {
+    static class Node {
         Puzzle puzzle;
         int depth;
 

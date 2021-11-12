@@ -23,8 +23,13 @@ public class AStarTest {
         List<Puzzle> path2 = Ecluid.solve(init);
         assertNotNull(path1);
         assertNotNull(path2);
+
+        assertTrue(Manhatten.runningTime() <= 1000);
+        assertTrue(Ecluid.runningTime() <= 1000);
+
         assertArrayEquals(path1.toArray(), path2.toArray());
     }
+
     @Test
     void example2() {
         Puzzle init = new Puzzle(new int[][]{
@@ -33,9 +38,17 @@ public class AStarTest {
                 {3, 6, 0}
         });
 
-        AStar soln = new AStar(AStar::ManhattanDistance);
-        List<Puzzle> path = soln.solve(init);
-        assertNotNull(path);
+        AStar manhattan = new AStar(AStar::ManhattanDistance);
+        AStar euclid = new AStar(AStar::EuclideanDistance);
+
+        List<Puzzle> path_manhattan = manhattan.solve(init);
+        assertNotNull(path_manhattan);
+        List<Puzzle> path_euclid = euclid.solve(init);
+        assertNotNull(path_euclid);
+        assertArrayEquals(path_manhattan.toArray(), path_euclid.toArray());
+
+        assertTrue(manhattan.runningTime() <= 1000);
+        assertTrue(euclid.runningTime() <= 1000);
 //        System.out.println(path.size()) ;
 //        UI.displayPath(path);
     }
@@ -48,10 +61,19 @@ public class AStarTest {
                 {7, 4, 8}
         });
 
-        AStar soln = new AStar(AStar::ManhattanDistance);
-        List<Puzzle> path = soln.solve(init);
-        assertNotNull(path);
-        assertEquals(path.size(), 6);
+        AStar manhattan = new AStar(AStar::ManhattanDistance);
+        AStar euclid = new AStar(AStar::EuclideanDistance);
+
+        List<Puzzle> path_manhattan = manhattan.solve(init);
+        assertNotNull(path_manhattan);
+        assertEquals(6, path_manhattan.size());
+        List<Puzzle> path_euclid = euclid.solve(init);
+        assertNotNull(path_euclid);
+        assertArrayEquals(path_manhattan.toArray(), path_euclid.toArray());
+
+        assertTrue(manhattan.runningTime() <= 1000);
+        assertTrue(euclid.runningTime() <= 1000);
+
 //        System.out.println(path.size()) ;
 //        UI.displayPath(path);
     }
@@ -64,9 +86,16 @@ public class AStarTest {
                 {8, 7, 0}
         });
 
-        AStar soln = new AStar(AStar::ManhattanDistance);
-        List<Puzzle> path = soln.solve(init);
+        AStar manhattan = new AStar(AStar::ManhattanDistance);
+        AStar euclid = new AStar(AStar::EuclideanDistance);
+
+        List<Puzzle> path = manhattan.solve(init);
         assertNull(path);
+        path = euclid.solve(init);
+        assertNull(path);
+
+        assertTrue(manhattan.runningTime() <= 1000, "Manhattan takes too long " + manhattan.runningTime());
+        assertTrue(euclid.runningTime() <= 1000, "Euclidean takes too long " + euclid.runningTime());
 //        UI.displayPath(path);
     }
 
@@ -78,9 +107,35 @@ public class AStarTest {
                 {3, 0, 1}
         });
 
-        AStar soln = new AStar(AStar::ManhattanDistance);
-        List<Puzzle> path = soln.solve(init);
-        assertTrue( soln.runningTime() < 1000 ); // less than 1 ms.
-        assertNotNull(path);
+        AStar manhattan = new AStar(AStar::ManhattanDistance);
+        AStar euclid = new AStar(AStar::EuclideanDistance);
+
+        List<Puzzle> path_manhattan = manhattan.solve(init);
+        assertNotNull(path_manhattan);
+        assertTrue(manhattan.runningTime() <= 1000);
+
+        List<Puzzle> path_euclid = euclid.solve(init);
+        assertNotNull(path_euclid);
+        assertTrue(euclid.runningTime() <= 1000);
+
+        assertArrayEquals(path_manhattan.toArray(), path_euclid.toArray());
+    }
+
+    @Test
+    void testInitialSolved(){
+        Puzzle init = Puzzle.GOAL_PUZZLE;
+
+        AStar manhattan = new AStar(AStar::ManhattanDistance);
+        AStar euclid = new AStar(AStar::EuclideanDistance);
+
+        List<Puzzle> path_manhattan = manhattan.solve(init);
+        assertNotNull(path_manhattan);
+        assertTrue(manhattan.runningTime() <= 1000);
+
+        List<Puzzle> path_euclid = euclid.solve(init);
+        assertNotNull(path_euclid);
+        assertTrue(euclid.runningTime() <= 1000);
+
+        assertArrayEquals(path_manhattan.toArray(), path_euclid.toArray());
     }
 }

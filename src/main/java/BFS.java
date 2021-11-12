@@ -3,11 +3,12 @@ import java.util.*;
 class BFS implements Traversal{
 
     Map<Puzzle, Puzzle> parentMap = new HashMap<>();
-    Queue<Puzzle> queue = new LinkedList<>();
+    Queue<Node> queue = new LinkedList<>();
     List<Puzzle> path;
     boolean solved = false;
     long startTime;
     long endTime;
+    int maxDepth = 0;
 
     public List<Puzzle> solve(Puzzle initialPuzzle){
         startTime = System.nanoTime();
@@ -15,16 +16,19 @@ class BFS implements Traversal{
         if (initialPuzzle.isWin())
             solved = true;
         else {
-            queue.add(initialPuzzle);
+            queue.add(new Node(initialPuzzle, 1));
             parentMap.put(initialPuzzle, initialPuzzle);
 
             Puzzle current;
+            int current_depth;
             while (!queue.isEmpty()) {
-                current = queue.remove();
+                current = queue.peek().puzzle;
+                current_depth = queue.remove().depth;
+                maxDepth = Math.max(current_depth, maxDepth);
                 for (Puzzle nextPuzzle : current.possibleNextStates()) {
                     if (parentMap.containsKey(nextPuzzle))
                         continue;
-                    queue.add(nextPuzzle);
+                    queue.add(new Node(nextPuzzle, current_depth + 1));
                     parentMap.put(nextPuzzle, current);
                     /* Early goal test, the TA doesn't mind*/
                     if (nextPuzzle.isWin()) {
@@ -47,7 +51,7 @@ class BFS implements Traversal{
 
     @Override
     public Integer pathCost() {
-        return (solved? path.size() : Integer.MAX_VALUE);
+        return (solved? path.size() - 1 : Integer.MAX_VALUE);
     }
 
     @Override
@@ -58,12 +62,22 @@ class BFS implements Traversal{
 
     @Override
     public Integer searchDepth() {
-        return (solved? path.size() : Integer.MAX_VALUE /* TODO */);
+        return maxDepth;
     }
 
     @Override
     public Long runningTime() {
         return (endTime - startTime)/1000000;
+    }
+
+    static class Node {
+        Puzzle puzzle;
+        int depth;
+
+        public Node(Puzzle puzzle, int depth) {
+            this.puzzle = puzzle;
+            this.depth = depth;
+        }
     }
 
 }

@@ -15,7 +15,7 @@ import java.util.function.Function;
 public class AStar implements Traversal{
 
     Map<Puzzle, Integer> FCost = new HashMap<>();
-    Map<Puzzle, Puzzle> parent = new Hashtable<>();
+    Map<Puzzle, Puzzle> parent = new HashMap<>();
     List<Puzzle> path = new ArrayList<>();
     long startTime;
     long endTime;
@@ -31,7 +31,7 @@ public class AStar implements Traversal{
         startTime = System.nanoTime();
         PriorityQueue<Node> queue = new PriorityQueue<>();
 
-        Node curr = new Node(initialPuzzle,0,heuristic.apply(initialPuzzle),1);
+        Node curr = new Node(initialPuzzle, 0, heuristic.apply(initialPuzzle), 1);
         queue.add(curr);
         FCost.put(curr.puzzle,  curr.totalCost());
 
@@ -45,13 +45,13 @@ public class AStar implements Traversal{
             }
 
             if (curr.puzzle.isWin()) {
-                path = Helpers.getPathFromTraversalMap(parent, initialPuzzle, curr.puzzle);
                 endTime = System.nanoTime();
+                path = Helpers.getPathFromTraversalMap(parent, initialPuzzle, curr.puzzle);
                 return path;
             }
 
             for (Puzzle nextPuzzle : curr.puzzle.possibleNextStates()) {
-                Node node = new Node(nextPuzzle, curr.pathCost+1, heuristic.apply(nextPuzzle),curr.depth+1);
+                Node node = new Node(nextPuzzle, curr.pathCost + 1, heuristic.apply(nextPuzzle), curr.depth + 1);
                 if(!FCost.containsKey(nextPuzzle) || (node.totalCost() < FCost.get(nextPuzzle))) {
                     queue.add(node);
                     FCost.put(nextPuzzle, node.totalCost());
@@ -65,7 +65,7 @@ public class AStar implements Traversal{
     }
 
     public Integer pathCost(){
-        return path.size();
+        return path.size() - 1;
     }
 
     public Integer nodesExpanded(){
@@ -107,7 +107,7 @@ public class AStar implements Traversal{
         return sum;
     }
 
-    class Node implements Comparable<Node> {
+    static class Node implements Comparable<Node> {
         final public Puzzle puzzle;
         final public Integer pathCost;
         final public Integer heuristicCost;

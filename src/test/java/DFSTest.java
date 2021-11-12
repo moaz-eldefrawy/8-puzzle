@@ -20,7 +20,7 @@ public class DFSTest {
         DFS dfs = new DFS();
         List<Puzzle> path = dfs.solve(init);
         assertNotNull(path);
-//        UI.displayPath(path);
+        assertTrue(dfs.runningTime() <= 1000);
     }
 
     @Test
@@ -34,7 +34,7 @@ public class DFSTest {
         DFS dfs = new DFS();
         List<Puzzle> path = dfs.solve(init);
         assertNotNull(path);
-//        UI.displayPath(path);
+        assertTrue(dfs.runningTime() <= 1000);
     }
 
     @Test
@@ -48,7 +48,7 @@ public class DFSTest {
         DFS dfs = new DFS();
         List<Puzzle> path = dfs.solve(init);
         assertNull(path);
-//        UI.displayPath(path);
+        assertTrue(dfs.runningTime() <= 1000);
     }
 
     @Test
@@ -61,7 +61,18 @@ public class DFSTest {
 
         DFS dfs = new DFS();
         List<Puzzle> path = dfs.solve(init);
-        assertTrue( dfs.runningTime() < 5000 ); // less than 5 ms.
+        assertTrue( dfs.runningTime() <= 1000 );
         assertNotNull(path);
+    }
+
+    @Test
+    void testInitialSolved(){
+        Puzzle init = Puzzle.GOAL_PUZZLE;
+
+        DFS dfs = new DFS();
+        List<Puzzle> path = dfs.solve(init);
+        assertNotNull(path);
+        assertEquals(0, dfs.pathCost());
+        assertTrue(dfs.runningTime() <= 1000);
     }
 }

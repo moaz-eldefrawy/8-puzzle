@@ -21,7 +21,7 @@ public class UI {
             Stack<Puzzle> stack = new Stack<>();
             stack.push(goal);
             Puzzle current = goal, next = parentMap.get(current);
-            while (next != current){
+            while (next != null){
                 stack.push(next);
                 current = next;
                 next = parentMap.get(current);

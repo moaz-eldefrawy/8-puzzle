@@ -67,14 +67,6 @@ public class Puzzle implements Cloneable{
      * @return is the puzzle finished
      */
     boolean isWin() {
-        /* Commented out.. how does it work?
-        for(int i=1; i<9; i++){
-            int pre = i-1;
-            if(grid[i/3][i%3] != grid[pre/3][pre%3])
-                return false;
-        }
-
-        return true;*/
         return this.equals(GOAL_PUZZLE);
     }
 

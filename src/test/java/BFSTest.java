@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BFSTest {
@@ -11,11 +13,22 @@ public class BFSTest {
                 {3, 4, 0},
                 {6, 7, 8}
         });
+        BFS bfs = new BFS();
+        List<Puzzle> path = bfs.solve(init);
+        assertNotNull(path);
+    }
 
-        assertTrue(BFS.solve(init));
+    @Test
+    void example2() {
+        Puzzle init = new Puzzle(new int[][]{
+                {4, 2, 5},
+                {1, 7, 8},
+                {3, 6, 0}
+        });
 
-        UI.displaySteps(BFS.parentMap);
-
+        BFS bfs = new BFS();
+        List<Puzzle> path = bfs.solve(init);
+        assertNotNull(path);
     }
 
     @Test
@@ -26,7 +39,9 @@ public class BFSTest {
                 {8, 7, 0}
         });
 
-        assertFalse(BFS.solve(init));
+        BFS bfs = new BFS();
+        List<Puzzle> path = bfs.solve(init);
+        assertNull(path);
     }
 
     @Test
@@ -37,16 +52,10 @@ public class BFSTest {
                 {3, 0, 1}
         });
 
-        assertTrue(BFS.solve(init));
+        BFS bfs = new BFS();
+        List<Puzzle> path = bfs.solve(init);
+        assertNotNull(path);
 
-        int steps = 0;
-        Puzzle current = Puzzle.GOAL_PUZZLE, nextPuzzle = BFS.parentMap.get(current);
-        while(current != nextPuzzle){
-            steps++;
-            current = nextPuzzle;
-            nextPuzzle = BFS.parentMap.get(current);
-        }
-
-        assertEquals(27, steps);
+        assertEquals(27, bfs.pathCost());
     }
 }

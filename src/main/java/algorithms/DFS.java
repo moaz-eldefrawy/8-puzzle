@@ -1,3 +1,9 @@
+package algorithms;
+
+import algorithms.Helpers;
+import algorithms.Puzzle;
+import algorithms.Traversal;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -8,7 +14,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 
-public class DFS implements Traversal{
+public class DFS implements Traversal {
 
     Set<Puzzle> visited = new HashSet<>();
     Map<Puzzle, Puzzle> parent = new Hashtable<>();
@@ -17,7 +23,7 @@ public class DFS implements Traversal{
     long endTime;
     int nodesExpanded = 0;
     int maxDepth = 0;
-    DFS(){}
+    public DFS(){}
 
     public List<Puzzle> solve(Puzzle initialPuzzle){
 

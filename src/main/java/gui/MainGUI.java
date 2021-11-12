@@ -6,6 +6,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
@@ -20,6 +21,8 @@ import java.util.List;
 
 public class MainGUI extends Application {
     BorderPane root = new BorderPane();
+    InputGrid inputGrid = new InputGrid();
+    OptionsBar buttonBar = new OptionsBar();
 
     @Override
     public void start(Stage stage) {
@@ -32,25 +35,28 @@ public class MainGUI extends Application {
 
         Scene scene = new Scene(root);
 
-        InputGrid inputGrid = new InputGrid();
 
-        OptionsBar buttonBar = new OptionsBar();
         buttonBar.setOptionListener((option) -> {
             if (inputGrid.getGameState() != null) {
 
                 Puzzle initalState = inputGrid.getGameState();
+
+                Label l = new Label("Solution for " + option.toString());
+                l.setAlignment(Pos.CENTER);
+                BorderPane.setAlignment(l, Pos.CENTER);
+                root.setTop(l);
 
                 System.out.println("Initial state: ");
                 initalState.display();
 
                 Traversal t;
                 switch (option){
-//                    case DFS -> t = new DFS();
+                    case BFS -> t = new BFS();
                     case ASTAR_EUC -> t = new AStar(AStar::EuclideanDistance);
                     case ASTAR_MAN -> t = new AStar(AStar::ManhattanDistance);
                     default -> t = new DFS();
-//                    case BFS -> t = new BFS();
                 }
+
                 solve(initalState, t);
             }
 
@@ -82,8 +88,10 @@ public class MainGUI extends Application {
             p.display();
 
         OutputGrid outputGrid = new OutputGrid(moves);
+        inputGrid = new InputGrid();
         outputGrid.setExitListener(() -> {
-            root.setCenter(new InputGrid());
+            root.setCenter(inputGrid);
+            root.setTop(buttonBar);
         });
 
         root.setCenter(outputGrid);

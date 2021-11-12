@@ -1,6 +1,11 @@
+package algorithms;
+
+import algorithms.Puzzle;
+import algorithms.Traversal;
+
 import java.util.*;
 
-class BFS implements Traversal{
+public class BFS implements Traversal {
 
     Map<Puzzle, Puzzle> parentMap = new HashMap<>();
     Queue<Node> queue = new LinkedList<>();

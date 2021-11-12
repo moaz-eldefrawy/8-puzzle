@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
@@ -32,6 +33,10 @@ public class OutputGrid extends BorderPane {
 
 
         Button prev = createButton("Prev");
+
+        Label nMoves = new Label("Number of moves: " + (moves.size()-1));
+        buttonBar.getChildren().add(nMoves);
+
         Button exit = createButton("Exit");
         Button next = createButton("Next");
 

@@ -1,3 +1,8 @@
+package algorithms;
+
+import algorithms.Puzzle;
+import algorithms.Traversal;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -12,7 +17,7 @@ import java.util.Set;
 import java.util.Stack;
 import java.util.function.Function;
 
-public class AStar implements Traversal{
+public class AStar implements Traversal {
 
     Map<Puzzle, Integer> FCost = new HashMap<>();
     Map<Puzzle, Puzzle> parent = new HashMap<>();
@@ -23,7 +28,7 @@ public class AStar implements Traversal{
     int maxDepth = 0;
     Function<Puzzle,Integer> heuristic;
 
-    AStar(Function<Puzzle,Integer> heuristic){
+    public AStar(Function<Puzzle, Integer> heuristic){
         this.heuristic = heuristic;
     }
 

@@ -1,3 +1,5 @@
+import algorithms.DFS;
+import algorithms.Puzzle;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

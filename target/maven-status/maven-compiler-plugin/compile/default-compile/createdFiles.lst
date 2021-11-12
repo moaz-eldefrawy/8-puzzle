@@ -4,6 +4,7 @@ gui\OptionListener$Option.class
 algorithms\AStar$Node.class
 algorithms\Traversal.class
 gui\OptionsBar.class
+algorithms\BFS$Node.class
 algorithms\DFS.class
 algorithms\Helpers.class
 algorithms\AStar.class
@@ -11,6 +12,7 @@ gui\ExitListener.class
 algorithms\UI.class
 gui\MainGUI$1.class
 gui\OptionListener.class
+algorithms\DFS$Node.class
 gui\DigitTextField.class
 algorithms\BFS.class
 algorithms\Puzzle.class

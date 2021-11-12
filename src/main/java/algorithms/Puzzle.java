@@ -68,7 +68,7 @@ public class Puzzle implements Cloneable{
     /**
      * @return is the puzzle finished
      */
-    boolean isWin() {
+    public boolean isWin() {
         return this.equals(GOAL_PUZZLE);
     }
 

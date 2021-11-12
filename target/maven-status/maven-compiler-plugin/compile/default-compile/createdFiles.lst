@@ -1,3 +1,4 @@
+gui\Launcher.class
 gui\OutputGrid.class
 gui\InputGrid.class
 gui\OptionListener$Option.class

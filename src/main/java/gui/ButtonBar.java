@@ -11,15 +11,15 @@ public class ButtonBar extends HBox {
     public ButtonBar(){
         super();
 
-        Button dfsButton = new Button("algorithms.DFS");
+        Button dfsButton = new Button("DFS");
         Button bfsButton = new Button("BFS");
-
+        Button aStartButton = new Button("A*");
 
         dfsButton.setOnAction((e) -> optionListener.onOptionSelected(OptionListener.Option.DFS));
         bfsButton.setOnAction((e) -> optionListener.onOptionSelected(OptionListener.Option.BFS));
+        aStartButton.setOnAction((e) -> optionListener.onOptionSelected(OptionListener.Option.ASTAR));
 
-
-        getChildren().addAll(dfsButton, bfsButton);
+        getChildren().addAll(dfsButton, bfsButton, aStartButton);
     }
 
     public void setOptionListener(OptionListener ol){

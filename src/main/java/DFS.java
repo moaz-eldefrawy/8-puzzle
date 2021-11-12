@@ -16,32 +16,34 @@ public class DFS implements Traversal{
     long startTime;
     long endTime;
     int nodesExpanded = 0;
+    int maxDepth = 0;
     DFS(){}
 
     public List<Puzzle> solve(Puzzle initialPuzzle){
 
         startTime = System.nanoTime();
 
-        Stack<Puzzle> stack = new Stack<>();
-        Puzzle puzzle = initialPuzzle;
+        Stack<Node> stack = new Stack<>();
+        Node curr = new Node(initialPuzzle,1);
 
-        stack.push(initialPuzzle);
+        stack.push(curr);
 
         while(!stack.isEmpty()) {
+            maxDepth = Math.max(maxDepth, curr.depth);
             nodesExpanded++;
-            puzzle = stack.pop();
+            curr = stack.pop();
 
-            if (puzzle.isWin()) {
-                path = Helpers.getPathFromTraversalMap(parent, initialPuzzle, puzzle);
+            if (curr.puzzle.isWin()) {
+                path = Helpers.getPathFromTraversalMap(parent, initialPuzzle, curr.puzzle);
                 endTime = System.nanoTime();
                 return path;
             }
 
-            for (Puzzle nextPuzzle : puzzle.possibleNextStates()) {
+            for (Puzzle nextPuzzle : curr.puzzle.possibleNextStates()) {
                 if(!visited.contains(nextPuzzle)) {
-                    stack.add(nextPuzzle);
-                    visited.add(puzzle);
-                    parent.put(nextPuzzle,puzzle);
+                    stack.add(new Node(nextPuzzle,curr.depth+1));
+                    visited.add(curr.puzzle);
+                    parent.put(nextPuzzle,curr.puzzle);
                 }
             }
         }
@@ -69,4 +71,13 @@ public class DFS implements Traversal{
         return (endTime - startTime)/1000/1000;
     }
 
+    class Node {
+        Puzzle puzzle;
+        int depth;
+
+        public Node(Puzzle puzzle, int depth) {
+            this.puzzle = puzzle;
+            this.depth = depth;
+        }
+    }
 }

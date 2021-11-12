@@ -6,7 +6,7 @@ public class BFSTest {
 
     @Test
     void testPDFExample(){
-        State init = new State(new int[][]{
+        Puzzle init = new Puzzle(new int[][]{
                 {1, 2, 5},
                 {3, 4, 0},
                 {6, 7, 8}
@@ -14,13 +14,13 @@ public class BFSTest {
 
         assertTrue(BFS.solve(init));
 
-        Main.displaySteps(BFS.parentMap);
+        UI.displaySteps(BFS.parentMap);
 
     }
 
     @Test
     void testNoSolution(){
-        State init = new State(new int[][]{
+        Puzzle init = new Puzzle(new int[][]{
                 {1, 2, 3},
                 {4, 5, 6},
                 {8, 7, 0}
@@ -31,7 +31,7 @@ public class BFSTest {
 
     @Test
     void testLongPuzzle(){
-        State init = new State(new int[][]{
+        Puzzle init = new Puzzle(new int[][]{
                 {8, 6, 7},
                 {2, 5, 4},
                 {3, 0, 1}
@@ -40,11 +40,11 @@ public class BFSTest {
         assertTrue(BFS.solve(init));
 
         int steps = 0;
-        State current = State.GOAL_STATE, nextState = BFS.parentMap.get(current);
-        while(current != nextState){
+        Puzzle current = Puzzle.GOAL_PUZZLE, nextPuzzle = BFS.parentMap.get(current);
+        while(current != nextPuzzle){
             steps++;
-            current = nextState;
-            nextState = BFS.parentMap.get(current);
+            current = nextPuzzle;
+            nextPuzzle = BFS.parentMap.get(current);
         }
 
         assertEquals(27, steps);

@@ -5,24 +5,24 @@ import java.util.Queue;
 
 class BFS {
 
-    static Map<State, State> parentMap = null;
+    static Map<Puzzle, Puzzle> parentMap = null;
 
-    static boolean solve(State initialState){
-        Queue<State> queue = new LinkedList<>();
-        queue.add(initialState);
+    static boolean solve(Puzzle initialPuzzle){
+        Queue<Puzzle> queue = new LinkedList<>();
+        queue.add(initialPuzzle);
         parentMap = new HashMap<>();
-        parentMap.put(initialState, initialState);
+        parentMap.put(initialPuzzle, initialPuzzle);
 
-        State current;
+        Puzzle current;
         while (!queue.isEmpty()){
             current = queue.remove();
-            for (State nextState : current.possibleNextStates()){
-                if (parentMap.containsKey(nextState))
+            for (Puzzle nextPuzzle : current.possibleNextStates()){
+                if (parentMap.containsKey(nextPuzzle))
                     continue;
-                queue.add(nextState);
-                parentMap.put(nextState, current);
+                queue.add(nextPuzzle);
+                parentMap.put(nextPuzzle, current);
                 /* Early goal test, the TA doesn't mind*/
-                if (nextState.isWin())
+                if (nextPuzzle.isWin())
                     return true;
             }
         }

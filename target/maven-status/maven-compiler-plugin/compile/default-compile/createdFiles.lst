@@ -9,6 +9,7 @@ algorithms\BFS$Node.class
 algorithms\DFS.class
 algorithms\Helpers.class
 algorithms\AStar.class
+module-info.class
 gui\ExitListener.class
 algorithms\UI.class
 gui\MainGUI$1.class

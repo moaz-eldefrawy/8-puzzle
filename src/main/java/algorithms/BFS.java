@@ -56,7 +56,7 @@ public class BFS implements Traversal {
 
     @Override
     public Integer pathCost() {
-        return (solved? path.size() - 1 : Integer.MAX_VALUE);
+        return (solved? path.size() - 1 : -1);
     }
 
     @Override

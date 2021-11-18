@@ -1,20 +1,11 @@
 package algorithms;
 
-import algorithms.Puzzle;
-import algorithms.Traversal;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 import java.util.PriorityQueue;
-import java.util.Set;
-import java.util.Stack;
 import java.util.function.Function;
 
 public class AStar implements Traversal {
@@ -38,14 +29,14 @@ public class AStar implements Traversal {
 
         Node curr = new Node(initialPuzzle, 0, heuristic.apply(initialPuzzle), 1);
         queue.add(curr);
-        FCost.put(curr.puzzle,  curr.totalCost());
+        FCost.put(curr.puzzle,  curr.pathCost);
 
         while(!queue.isEmpty()) {
             maxDepth = Math.max(maxDepth, curr.depth);
             nodesExpaneded++;
             curr = queue.poll();
 
-            if(curr.totalCost() > FCost.get(curr.puzzle)){
+            if(curr.pathCost > FCost.get(curr.puzzle)){
                 continue;
             }
 
@@ -57,9 +48,9 @@ public class AStar implements Traversal {
 
             for (Puzzle nextPuzzle : curr.puzzle.possibleNextStates()) {
                 Node node = new Node(nextPuzzle, curr.pathCost + 1, heuristic.apply(nextPuzzle), curr.depth + 1);
-                if(!FCost.containsKey(nextPuzzle) || (node.totalCost() < FCost.get(nextPuzzle))) {
+                if(!FCost.containsKey(nextPuzzle) || (node.pathCost < FCost.get(nextPuzzle))) {
                     queue.add(node);
-                    FCost.put(nextPuzzle, node.totalCost());
+                    FCost.put(nextPuzzle, node.pathCost);
                     parent.put(nextPuzzle,curr.puzzle);
                 }
             }

@@ -5,12 +5,14 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DFSTest {
+
+    private static final int maxMilliSeconds = 1200;
+
     @Test
     void testPDFExample(){
         Puzzle init = new Puzzle(new int[][]{
@@ -22,7 +24,7 @@ public class DFSTest {
         DFS dfs = new DFS();
         List<Puzzle> path = dfs.solve(init);
         assertNotNull(path);
-        assertTrue(dfs.runningTime() <= 1000);
+        assertTrue(dfs.runningTime() <= maxMilliSeconds);
     }
 
     @Test
@@ -36,7 +38,7 @@ public class DFSTest {
         DFS dfs = new DFS();
         List<Puzzle> path = dfs.solve(init);
         assertNotNull(path);
-        assertTrue(dfs.runningTime() <= 1000);
+        assertTrue(dfs.runningTime() <= maxMilliSeconds);
     }
 
     @Test
@@ -50,7 +52,8 @@ public class DFSTest {
         DFS dfs = new DFS();
         List<Puzzle> path = dfs.solve(init);
         assertNull(path);
-        assertTrue(dfs.runningTime() <= 1000);
+        System.out.println(dfs.runningTime());
+        assertTrue(dfs.runningTime() <= 1250);
     }
 
     @Test
@@ -63,7 +66,7 @@ public class DFSTest {
 
         DFS dfs = new DFS();
         List<Puzzle> path = dfs.solve(init);
-        assertTrue( dfs.runningTime() <= 1000 );
+        assertTrue( dfs.runningTime() <= maxMilliSeconds );
         assertNotNull(path);
     }
 
@@ -75,6 +78,6 @@ public class DFSTest {
         List<Puzzle> path = dfs.solve(init);
         assertNotNull(path);
         assertEquals(0, dfs.pathCost());
-        assertTrue(dfs.runningTime() <= 1000);
+        assertTrue(dfs.runningTime() <= maxMilliSeconds);
     }
 }

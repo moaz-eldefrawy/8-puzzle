@@ -4,12 +4,10 @@ import algorithms.Puzzle;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
-import java.io.PushbackInputStream;
 import java.util.List;
 
 public class OutputGrid extends BorderPane {
@@ -33,9 +31,15 @@ public class OutputGrid extends BorderPane {
 
 
         Button prev = createButton("Prev");
+        
+        Label label;
 
-        Label nMoves = new Label("Number of moves: " + (moves.size()-1));
-        buttonBar.getChildren().add(nMoves);
+        if(moves != null)
+            label = new Label("Number of moves: " + (moves.size()-1));
+        else
+            label = new Label("No Solution Exists!");
+
+        buttonBar.getChildren().add(label);
 
         Button exit = createButton("Exit");
         Button next = createButton("Next");
@@ -46,25 +50,25 @@ public class OutputGrid extends BorderPane {
 
 
         prev.setOnAction((e) -> {
-            if (currentMoveIndex == 0)
+            if (moves == null || currentMoveIndex == 0)
                 return;
             setCurrentState(moves.get(--currentMoveIndex));
         });
 
         next.setOnAction((e) -> {
-            if (currentMoveIndex == moves.size()-1)
+            if (moves== null || currentMoveIndex == moves.size()-1)
                 return;
             setCurrentState(moves.get(++currentMoveIndex));
         });
 
         exit.setOnAction((e) -> el.onExit());
-        setCurrentState(moves.get(0));
-
+        if(moves != null)
+            setCurrentState(moves.get(0));
     }
 
     private Button createButton(String name){
         Button b = new Button(name);
-        buttonBar.setMargin(b, new Insets(10));
+        HBox.setMargin(b, new Insets(10));
         buttonBar.getChildren().add(b);
 
         return b;

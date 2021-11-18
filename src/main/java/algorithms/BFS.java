@@ -1,7 +1,5 @@
 package algorithms;
 
-import algorithms.Puzzle;
-import algorithms.Traversal;
 
 import java.util.*;
 

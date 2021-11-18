@@ -1,6 +1,5 @@
 import algorithms.BFS;
 import algorithms.Puzzle;
-import algorithms.UI;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

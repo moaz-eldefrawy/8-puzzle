@@ -11,6 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AStarTest {
+    private static final int maxMilliSeconds = 1500;
+
     @Test
     void testPDFExample(){
         Puzzle init = new Puzzle(new int[][]{
@@ -26,8 +28,8 @@ public class AStarTest {
         assertNotNull(path1);
         assertNotNull(path2);
 
-        assertTrue(Manhatten.runningTime() <= 1000);
-        assertTrue(Ecluid.runningTime() <= 1000);
+        assertTrue(Manhatten.runningTime() <= maxMilliSeconds);
+        assertTrue(Ecluid.runningTime() <= maxMilliSeconds);
 
         assertArrayEquals(path1.toArray(), path2.toArray());
     }
@@ -49,8 +51,8 @@ public class AStarTest {
         assertNotNull(path_euclid);
         assertArrayEquals(path_manhattan.toArray(), path_euclid.toArray());
 
-        assertTrue(manhattan.runningTime() <= 1000);
-        assertTrue(euclid.runningTime() <= 1000);
+        assertTrue(manhattan.runningTime() <= maxMilliSeconds);
+        assertTrue(euclid.runningTime() <= maxMilliSeconds);
 //        System.out.println(path.size()) ;
 //        UI.displayPath(path);
     }
@@ -73,8 +75,8 @@ public class AStarTest {
         assertNotNull(path_euclid);
         assertArrayEquals(path_manhattan.toArray(), path_euclid.toArray());
 
-        assertTrue(manhattan.runningTime() <= 1000);
-        assertTrue(euclid.runningTime() <= 1000);
+        assertTrue(manhattan.runningTime() <= maxMilliSeconds);
+        assertTrue(euclid.runningTime() <= maxMilliSeconds);
 
 //        System.out.println(path.size()) ;
 //        UI.displayPath(path);
@@ -96,8 +98,8 @@ public class AStarTest {
         path = euclid.solve(init);
         assertNull(path);
 
-        assertTrue(manhattan.runningTime() <= 1000, "Manhattan takes too long " + manhattan.runningTime());
-        assertTrue(euclid.runningTime() <= 1000, "Euclidean takes too long " + euclid.runningTime());
+        assertTrue(euclid.runningTime() <= maxMilliSeconds, "Euclidean takes too long " + euclid.runningTime());
+        assertTrue(manhattan.runningTime() <= maxMilliSeconds, "Manhattan takes too long " + manhattan.runningTime());
 //        UI.displayPath(path);
     }
 
@@ -114,11 +116,11 @@ public class AStarTest {
 
         List<Puzzle> path_manhattan = manhattan.solve(init);
         assertNotNull(path_manhattan);
-        assertTrue(manhattan.runningTime() <= 1000);
+        assertTrue(manhattan.runningTime() <= maxMilliSeconds);
 
         List<Puzzle> path_euclid = euclid.solve(init);
         assertNotNull(path_euclid);
-        assertTrue(euclid.runningTime() <= 1000);
+        assertTrue(euclid.runningTime() <= maxMilliSeconds);
 
         assertArrayEquals(path_manhattan.toArray(), path_euclid.toArray());
     }
@@ -132,11 +134,11 @@ public class AStarTest {
 
         List<Puzzle> path_manhattan = manhattan.solve(init);
         assertNotNull(path_manhattan);
-        assertTrue(manhattan.runningTime() <= 1000);
+        assertTrue(manhattan.runningTime() <= maxMilliSeconds);
 
         List<Puzzle> path_euclid = euclid.solve(init);
         assertNotNull(path_euclid);
-        assertTrue(euclid.runningTime() <= 1000);
+        assertTrue(euclid.runningTime() <= maxMilliSeconds);
 
         assertArrayEquals(path_manhattan.toArray(), path_euclid.toArray());
     }

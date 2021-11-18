@@ -2,20 +2,13 @@ package gui;
 
 import algorithms.*;
 import javafx.application.Application;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -82,10 +75,13 @@ public class MainGUI extends Application {
     void solve(Puzzle state, Traversal traversal){
         List<Puzzle> moves = traversal.solve(state);
 
+        
+        if(moves != null) {
+            System.out.println("MOVES : ");
 
-        System.out.println("MOVES : ");
-        for (Puzzle p : moves)
-            p.display();
+            for (Puzzle p : moves)
+                p.display();
+        }
 
         OutputGrid outputGrid = new OutputGrid(moves);
         inputGrid = new InputGrid();
